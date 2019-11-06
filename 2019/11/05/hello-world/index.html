@@ -323,7 +323,22 @@
   
 
   
-
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://4mmmm.github.io/2019/11/05/hello-world/",
+  owner: '4mmmm',
+  repo: 'blog_comments',
+  oauth: {
+    client_id: '39fcadee4fd767ac6381',
+    client_secret: 'e9ac83b34efbb16732c4f646f949b0fe513f1d34',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -354,7 +369,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
