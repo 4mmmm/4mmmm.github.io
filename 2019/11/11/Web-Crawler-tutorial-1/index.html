@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://4mmmm.github.io">
   <title>Web_Crawler_tutorial_1 | ljq的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="爬虫教程-静态网页篇最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础。     说到爬虫，还是不得不提一哈，python做爬虫（尤其是咱这种业余菜鸟玩玩的）真是太方便了，一个requests.get加上目标网址就可以动手嘿嘿嘿辣（当然要注意，在网站后加个&#x2F;robots.">
-<meta name="keywords" content="python,toturial,crawler">
+  <meta name="description" content="爬虫教程-静态网页篇最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说学校课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础就行哦。">
+<meta name="keywords" content="python,crawler,toturial">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web_Crawler_tutorial_1">
 <meta property="og:url" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;Web-Crawler-tutorial-1&#x2F;index.html">
 <meta property="og:site_name" content="ljq的博客">
-<meta property="og:description" content="爬虫教程-静态网页篇最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础。     说到爬虫，还是不得不提一哈，python做爬虫（尤其是咱这种业余菜鸟玩玩的）真是太方便了，一个requests.get加上目标网址就可以动手嘿嘿嘿辣（当然要注意，在网站后加个&#x2F;robots.">
+<meta property="og:description" content="爬虫教程-静态网页篇最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说学校课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础就行哦。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;little.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;news.jpg">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;response2.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;response3.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;result.jpg">
-<meta property="og:updated_time" content="2019-11-11T12:56:09.771Z">
+<meta property="og:updated_time" content="2019-11-11T12:58:27.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;4mmmm.github.io&#x2F;assets&#x2F;img&#x2F;little.jpg">
   
@@ -190,10 +190,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="爬虫教程-静态网页篇"><a href="#爬虫教程-静态网页篇" class="headerlink" title="爬虫教程-静态网页篇"></a>爬虫教程-静态网页篇</h2><p>最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础。</p>
+        <h2 id="爬虫教程-静态网页篇"><a href="#爬虫教程-静态网页篇" class="headerlink" title="爬虫教程-静态网页篇"></a>爬虫教程-静态网页篇</h2><p>最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说学校课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础就行哦。</p>
 <div align="center">
 <img src="/assets/img/little.jpg" title="只要一点点">
 </div>
+
+<a id="more"></a>
 
 <p>说到爬虫，还是不得不提一哈，python做爬虫（尤其是咱这种业余菜鸟玩玩的）真是太方便了，一个requests.get加上目标网址就可以动手嘿嘿嘿辣（当然要注意，在网站后加个/robots.txt看看啥子能爬啥子不能爬哦）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r=requests.get(<span class="string">'https://mbd.baidu.com/newspage/data/landingsuper?context=%7B%22nid%22%3A%22news_10600332758289859960%22%7D&amp;n_type=0&amp;p_from=1'</span>)     <span class="comment">#最好按F12复制一哈你的user-agent，要不然别人一眼就看出来你是爬虫辣，咱好歹欲拒还迎一哈</span></span><br><span class="line">text=r.content        <span class="comment">#content大概是网页源码之类的东西，text好像也行</span></span><br></pre></td></tr></table></figure>
@@ -311,11 +313,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">toturial</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">crawler</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">crawler</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">toturial</a>
         		</li>
       		
 		</ul>
@@ -530,19 +532,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">debug</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">toturial</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">crawler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">toturial</a>
               </li>
             
             <div class="clearfix"></div>

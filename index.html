@@ -182,60 +182,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="爬虫教程-静态网页篇"><a href="#爬虫教程-静态网页篇" class="headerlink" title="爬虫教程-静态网页篇"></a>爬虫教程-静态网页篇</h2><p>最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础。</p>
+        <h2 id="爬虫教程-静态网页篇"><a href="#爬虫教程-静态网页篇" class="headerlink" title="爬虫教程-静态网页篇"></a>爬虫教程-静态网页篇</h2><p>最近课比较多，写教程的话还是从最熟悉的开始吧，照理来说学校课程上教的是最熟悉的，不过说实话对新手不太友好而且实用性属实8行。爬虫对新手还是很友好的辣，只要你有一点点的python基础就行哦。</p>
 <div align="center">
 <img src="/assets/img/little.jpg" title="只要一点点">
 </div>
-
-<p>说到爬虫，还是不得不提一哈，python做爬虫（尤其是咱这种业余菜鸟玩玩的）真是太方便了，一个requests.get加上目标网址就可以动手嘿嘿嘿辣（当然要注意，在网站后加个/robots.txt看看啥子能爬啥子不能爬哦）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r=requests.get(<span class="string">'https://mbd.baidu.com/newspage/data/landingsuper?context=%7B%22nid%22%3A%22news_10600332758289859960%22%7D&amp;n_type=0&amp;p_from=1'</span>)     <span class="comment">#最好按F12复制一哈你的user-agent，要不然别人一眼就看出来你是爬虫辣，咱好歹欲拒还迎一哈</span></span><br><span class="line">text=r.content        <span class="comment">#content大概是网页源码之类的东西，text好像也行</span></span><br></pre></td></tr></table></figure>
-<p>这里我们先随手点一个网页，把作者最新文章标题爬下来（当然我也不知道爬这个有什么用😓，单纯是个例子，意思到了就行，你们懂的）</p>
-<div align="center">
-<img src="/assets/img/news.jpg" title="news">
-</div>
-看到这个网址属实一堆乱码，难以描述,看到这里相信大家都难顶了，当然我也难顶了，因为这个网页看起来又是一个给网址取中文名的（应该是吧，有不对可指正，后同），然后一堆不可描述……
-<div align="center">
-<img src="/assets/img/HardToHold.jpg" title="难顶辣">
-</div>
-但是！！！没有关系，因为这个网址再怎么唬人，都要屈服于Ctrl+C、Ctrl+V大法的yin威之下
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url =<span class="string">'https://mbd.baidu.com/newspage/data/landingsuper?context=%7B%22nid%22%3A%22news_10600332758289859960%22%7D&amp;n_type=0&amp;p_from=1'</span></span><br><span class="line">r=requests.get(url)</span><br></pre></td></tr></table></figure>
-<p>这个时候就要隆重介绍一下极其知名的工具人——status_code!!!<br>我们只需小小地print一下，就像这样</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
-<p>可以看到</p>
-<div align="center">
-<img src="/assets/img/status_code.jpg" title="status_code">
-</div>
-我们是冠军！我们又是冠军！！我们总是冠军！！！（大雾）
-不过出现200就代表着你已经成功访问了，如果是其他数字的话，我也记不下来建议百度一哈，像我这种随手点进去的新闻一般没什么反爬机制，你可以不用user-agent模仿浏览器访问，接下来看看我们访问了啥好东西吧
-<div align="center">
-<img src="/assets/img/response1.jpg" title="status_code">
-</div>
-……好吧，看上去十分不友好，但是！！！没有关系，python写爬虫就是这么方便！！！确保你命令行上pip能用，输入：pip install beautifulsoup4，安装后在py文件内引入，然后对响应回来的content解析：
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#部分省略</span></span><br><span class="line">soup=BeautifulSoup(r.content,<span class="string">'lxml'</span>)</span><br><span class="line">print(soup)</span><br></pre></td></tr></table></figure>
-<p>看看结果：</p>
-<div align="center">
-<img src="/assets/img/response2.jpg" title="soup">
-</div>
-是不是好看多了？好歹有中文了是吧
-再接下来我们调用,beautifulsoup中自带的select方法，记得先用F12查一查最新新闻是咋样的，我查到的是在h3标签里，class="item-title"，把参数传进去就行啦
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">txts=soup.select(<span class="string">'h3'</span>,class_=<span class="string">"item-title"</span>)</span><br></pre></td></tr></table></figure>
-
-<div align="center">
-<img src="/assets/img/response3.jpg" title="select">
-</div>
-是不是更好看了一点。再接下来我们用正则表达式把无关项去掉（可以稍微自己学一哈，普通用用不难）
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern=<span class="string">r'&lt;h3.*?target="_blank"&gt;(.*?)&lt;/a&gt;&lt;/h3&gt;'</span></span><br></pre></td></tr></table></figure>
-<p>最终代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">url =<span class="string">'https://mbd.baidu.com/newspage/data/landingsuper?context=%7B%22nid%22%3A%22news_10600332758289859960%22%7D&amp;n_type=0&amp;p_from=1'</span></span><br><span class="line">r=requests.get(url)</span><br><span class="line">soup=BeautifulSoup(r.content,<span class="string">'lxml'</span>)</span><br><span class="line">txts=soup.select(<span class="string">'h3'</span>,class_=<span class="string">"item-title"</span>)</span><br><span class="line">pattern=<span class="string">r'&lt;h3.*?target="_blank"&gt;(.*?)&lt;/a&gt;&lt;/h3&gt;'</span></span><br><span class="line"><span class="keyword">for</span> txt <span class="keyword">in</span> txts:</span><br><span class="line">    txt=str(txt)</span><br><span class="line">    txt=re.findall(pattern,txt)</span><br><span class="line">    print(txt)</span><br></pre></td></tr></table></figure>
-<p>最终结果就出来辣，我们又是冠军！我们总是冠军！！！</p>
-<div align="center">
-<img src="/assets/img/result.jpg" title="result">
-</div>
-不过现在纯静态用的已经不多了，下次介绍一哈更先进的哦，大部分社交评论网站都在用的好东西！（坏笑中）
+        
+          <a class="article-more-a" href="/2019/11/11/Web-Crawler-tutorial-1/#more">more >></a>
+        
       
 
       
@@ -258,11 +211,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">toturial</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">crawler</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">crawler</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">toturial</a>
         		</li>
       		
 		</ul>
@@ -740,19 +693,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">debug</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">toturial</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">crawler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">toturial</a>
               </li>
             
             <div class="clearfix"></div>
